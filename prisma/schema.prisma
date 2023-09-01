@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// This table contains check constraints and requires additional setup for migrations. Visit https://pris.ly/d/check-constraints for more info.
+model tasks {
+  task_id     Int      @id @default(autoincrement())
+  description String   @db.VarChar(255)
+  done        Boolean?
+  priority    Int?
+  user_email  String?  @db.VarChar(100)
+  users       users?   @relation(fields: [user_email], references: [email], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model users {
+  email     String  @id @db.VarChar(100)
+  firstname String? @db.VarChar(50)
+  lastname  String? @db.VarChar(50)
+  password  String? @db.VarChar(100)
+  tasks     tasks[]
+}
