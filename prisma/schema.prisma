@@ -14,6 +14,7 @@ model tasks {
   done        Boolean?
   priority    Int?
   user_email  String?  @db.VarChar(100)
+  jwttoken    String?  @db.VarChar(300)
   users       users?   @relation(fields: [user_email], references: [email], onDelete: NoAction, onUpdate: NoAction)
 }
 
