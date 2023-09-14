@@ -1,4 +1,5 @@
-import express, { Request, Response , Application } from 'express';
+const express = require('express'); 
+import { Request, Response , Application } from 'express';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client'
 import cors from 'cors';
@@ -154,5 +155,3 @@ app.listen(port, () => {
 });
 
 export {}
-
-// https://dev.to/cristain/how-to-set-up-typescript-with-nodejs-and-express-2023-gf
